@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-
+const hbs = require('hbs');
 const routes = require('./controllers/');
 const helpers = require('./utils/helpers');
 
@@ -16,7 +16,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
     secret: process.env.DB_SESSION_SECRET,
     cookie: {
-        // maxAge:
+        maxAge: 280
     },
     resave: false,
     saveUninitialized: true,
@@ -31,14 +31,18 @@ const hbs = exphbs.create({
 });
 app.engine('handlebars', hbs.engine);
 
-//app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+app.set('view engine', 'hbs');
+app.use(session(sess));
 
 app.use(express.json());
+
 app.use(express.urlencoded
     ({
-        extended: false
+        extended: true
     }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 //path to the routes
 app.use(routes);
