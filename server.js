@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3001;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
-  secret: tech_blog_db,
+  secret: process.env.SEQUELIZE_STORE,
   cookie: {
         // Session will automatically expire in 10 minutes
         expires: 10 * 60 * 1000
@@ -40,13 +40,7 @@ app.set('view engine', 'handlebars');
 
 app.use(require('./controllers/'));
 
-
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
-  sequelize.sync({ force: false });
-});
-
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log('Now listening' + PORT));
 });
