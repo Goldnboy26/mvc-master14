@@ -47,6 +47,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //path to the routes
 app.use(routes);
 
+console.log(`Database name: ${sequelize.config.tech_blog_db} \n running on port: ${sequelize.config.PORT} \n 
+under hostname: ${sequelize.config.localhost}`);
+
 sequelize.sync({
     force: false
 }).then(() => {
