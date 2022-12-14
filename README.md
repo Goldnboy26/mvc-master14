@@ -47,7 +47,7 @@ node server.js
 
 
 
-- Add a .env file to the root of the project
+- Add a .env file to the root of the project to specify the location of the important files
 
 ```text
 DB_NAME='tech_blog_db'
