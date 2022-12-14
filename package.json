@@ -1,7 +1,7 @@
 {
-  "name": "mvc-tech-blog",
+  "name": "mvc-tech-",
   "version": "1.0.0",
-  "description": "Model-View-Controller (MVC) Tech Blog",
+  "description": "Model-View",
   "main": "server.js",
   "scripts": {
     "test": "jest",
